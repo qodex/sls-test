@@ -2,13 +2,15 @@
 
 const uuid = require('uuid');
 const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
+let isValid = require('../utils/article-utils').isValid;
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
 module.exports.create = (event, context, callback) => {
   const timestamp = new Date().getTime();
   const data = JSON.parse(event.body);
-  if (typeof data.body !== 'string') {
+  console.log(data, isValid(data));
+  if (!isValid(data)) {
     console.error('Validation Failed');
     callback(null, {
       statusCode: 400,

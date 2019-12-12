@@ -16,6 +16,6 @@ https://1eyuj3dqva.execute-api.ap-southeast-2.amazonaws.com/dev/articles/{id}
 
 https://1eyuj3dqva.execute-api.ap-southeast-2.amazonaws.com/dev/tags/{tag}/{date}
 
-Samle find by tag and date url:
+Sample "find by tag and date" url:
 
 https://1eyuj3dqva.execute-api.ap-southeast-2.amazonaws.com/dev/tags/birds/20190922

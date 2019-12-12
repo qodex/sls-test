@@ -1,0 +1,160 @@
+{
+	"info": {
+		"_postman_id": "4cae0561-609c-4073-b921-e83b0d8d3b23",
+		"name": "articles-test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "create article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "d27f655d-126d-48a0-97ef-ca01f32eadcf",
+						"exec": [
+							"pm.test(\"status code is 200\", () => {",
+							"   pm.response.to.have.status(200); ",
+							"});",
+							"",
+							"pm.test(\"response time below 1000ms\", () => {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"response to have id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.be.a('string');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": \"1\",\n  \"title\": \"Article three\",\n  \"date\" : \"2019-09-23\",\n  \"body\" : \"besser ein Spatz in der Hand als eine Taube auf dem Dach\",\n  \"tags\" : [\"health\", \"politics\", \"business\", \"birds\"]\n}"
+				},
+				"url": {
+					"raw": "https://1eyuj3dqva.execute-api.ap-southeast-2.amazonaws.com/dev/articles",
+					"protocol": "https",
+					"host": [
+						"1eyuj3dqva",
+						"execute-api",
+						"ap-southeast-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"articles"
+					]
+				},
+				"description": "creates an article"
+			},
+			"response": []
+		},
+		{
+			"name": "get article",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "1a79f27d-613b-4f98-aa11-dca12c25538b",
+						"exec": [
+							"pm.test(\"status code is 200\", () => {",
+							"   pm.response.to.have.status(200); ",
+							"});",
+							"",
+							"pm.test(\"response time below 1000ms\", () => {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://1eyuj3dqva.execute-api.ap-southeast-2.amazonaws.com/dev/articles/20190923-0197ba00-1c9f-11ea-8543-ef2986a6df65",
+					"protocol": "https",
+					"host": [
+						"1eyuj3dqva",
+						"execute-api",
+						"ap-southeast-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"articles",
+						"20190923-0197ba00-1c9f-11ea-8543-ef2986a6df65"
+					]
+				},
+				"description": "returns an article"
+			},
+			"response": []
+		},
+		{
+			"name": "find by tag and date",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "63c913f3-04d9-41a7-af72-6da26368018d",
+						"exec": [
+							"pm.test(\"status code is 200\", () => {",
+							"   pm.response.to.have.status(200); ",
+							"});",
+							"",
+							"pm.test(\"response time below 1000ms\", () => {",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);",
+							"});",
+							"",
+							"pm.test(\"response to have id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.related_tags).to.be.an('array');",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://1eyuj3dqva.execute-api.ap-southeast-2.amazonaws.com/dev/tags/politics/20190922",
+					"protocol": "https",
+					"host": [
+						"1eyuj3dqva",
+						"execute-api",
+						"ap-southeast-2",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"dev",
+						"tags",
+						"politics",
+						"20190922"
+					]
+				},
+				"description": "finds articles by tag and date"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

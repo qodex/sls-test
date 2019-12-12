@@ -14,7 +14,6 @@ module.exports.get = (event, context, callback) => {
 
   dynamoDb.get(params, (error, result) => {
     if (error) {
-      console.error(error);
       callback(null, {
         statusCode: error.statusCode || 501,
         headers: { 'Content-Type': 'text/plain' },

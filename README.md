@@ -19,3 +19,13 @@ https://1eyuj3dqva.execute-api.ap-southeast-2.amazonaws.com/dev/tags/{tag}/{date
 Sample "find by tag and date" url:
 
 https://1eyuj3dqva.execute-api.ap-southeast-2.amazonaws.com/dev/tags/birds/20190922
+
+
+Sample POST body:
+
+{
+  "title": "Article three",
+  "date" : "2019-12-22",
+  "body" : "besser ein Spatz in der Hand als eine Taube auf dem Dach",
+  "tags" : ["health", "politics", "business", "birds"]
+}

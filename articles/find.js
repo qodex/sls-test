@@ -1,6 +1,7 @@
 'use strict';
 
 const AWS = require('aws-sdk'); // eslint-disable-line import/no-extraneous-dependencies
+let unique = require('../utils/article-utils').unique;
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
@@ -40,7 +41,7 @@ module.exports.find = (event, context, callback) => {
             tag: tagParam,
             count: subset.length,
             articles: [...subset.map( article => article.id )],
-            related_tags: [...new Set( related_tags.filter( tag => tag!==tagParam) )]
+            related_tags: unique(related_tags, tagParam)
         }
 
         const response = {
